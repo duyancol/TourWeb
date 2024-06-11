@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en-US" prefix="og: https://ogp.me/ns#" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, height=device-height, initial-scale=1, maximum-scale=2, minimum-scale=1">
+    <link rel="icon" href="https://modmixmap.travelerwp.com/wp-content/uploads/2022/04/cropped-Group-3145-32x32.png"
+          sizes="32x32"/>
+    <link rel='stylesheet' id='google-font-Poppins-css'
+          href='https://fonts.googleapis.com/css?family=Poppins%3A100%2C100i%2C200%2C200i%2C300%2C300i%2C400%2C400i%2C500%2C500i%2C600%2C600i%2C700%2C700i%2C800%2C800i%2C900%2C900i&#038;ver=6.1.1'
+          type='text/css' media='all'/>
+    <link rel='stylesheet' id='fontawesome-css'
+          href='https://modmixmap.travelerwp.com/wp-content/themes/traveler/css/font-awesome.css' type='text/css'
+          media='all'/>
+
+
+    <link rel='stylesheet' id='st-partner-v2-css'
+          href='https://modmixmap.travelerwp.com/wp-content/themes/traveler/v2/css/partner.css' type='text/css'
+          media='all'/>
+    <link rel='stylesheet' id='bootstrap-css-css'
+          href='https://modmixmap.travelerwp.com/wp-content/themes/traveler/v2/css/bootstrap.min.css' type='text/css'
+          media='all'/>
+
+    <script type='text/javascript' src='https://modmixmap.travelerwp.com/wp-includes/js/jquery/jquery.min.js?ver=3.6.1'
+            id='jquery-core-js'></script>
+
+    </style>
+
+
+    <style>
+
+
+        h1 {
+            color: #3b71fe;
+            text-align: center;
+        }
+
+        hr {
+            margin: 30px 0;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        .form-group {
+            margin-top: 15px;
+            float: left;
+            width: 27%;
+        }
+        .form-group-sub {
+            margin-top: 15px;
+            float: left;
+            width: 36%;
+
+        }
+
+        .form-group:last-child {
+            margin-bottom: 0;
+        }
+
+
+        .btn-view-detail:hover {
+            background: #3a89ff !important;
+            color: white !important;
+        }
+        .btn {
+            border-radius: 3px;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .btn-primary {
+            background-color: #3b71fe;
+            border-color: #3b71fe;
+        }
+
+        .btn-primary:hover {
+            background-color: #003adc;
+            border-color: #356cf8;
+        }
+
+        .btn-outline-secondary {
+            background-color: red;
+            border-color: red;
+            color: white;
+            margin-right: 10px;
+        }
+
+        .btn-outline-secondary:hover {
+            background-color: #cb0000;
+            border-color: #999;
+            color: white;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        .mda-table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        .mda-table td,
+        .mda-table th {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: right;
+        }
+
+        .mda-table th {
+            background-color: #f2f2f2;
+            color: #333;
+        }
+
+        .mda-money {
+            font-weight: bold;
+        }
+
+        .chitiet_gia tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        .mda-row {
+            padding-left: 150px;
+            margin-bottom: 5px;
+            position: relative;
+        }
+
+        .be {
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        .mda-info h2 a {
+            font-size: 20px;
+            color: #222;
+            font-weight: 700;
+            display: block;
+            text-decoration: none;
+        }
+
+        .aaa {
+            background: #ff888845;
+        }
+        .box{
+            color: #0a58ca;
+        }
+    </style>
+
+</head>
+<body class="page-template page-template-template-user page-template-template-user-php page page-id-1588 logged-in  menu_style1 topbar_position_default wishlist search_enable_preload elementor-default elementor-kit-7">
+
+<div class="page-wrapper chiller-theme toggled">
+    <a id="show-sidebar" class="btn btn-sm btn-dark" href="#">
+        <i class="fa fa-bars"></i>
+    </a>
+    <nav id="sidebar" class="sidebar-wrapper">
+        <div class="sidebar-content">
+            <div class="sidebar-header">
+                <a th:href="@{/home}"><img
+                        src="https://modmixmap.travelerwp.com/wp-content/uploads/2022/04/hotel-1.png"
+                        class="st-logo-site" alt="Logo"/></a>
+                <div class="sidebar-brand icon-ccv hidden-md">
+                    <a href="#"></a>
+                    <div id="close-sidebar">
+                        <i class="fa fa-chevron-left"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="sidebar-header">
+                <div class="user-pic" style="margin-right: 7px;">
+                    <img alt='TravelerWP'
+                         th:src="@{/images/avatar/{img}(img=${@userController.getImgAvatar()},timestamp=${#httpServletRequest.getSession().getCreationTime()})}"
+                         src="static/images/avatar/23.jpg"
+                         class='avatar avatar-50 photo' height='50' width='50' loading='lazy' decoding='async'/>
+                </div>
+                <div class="user-info" style="width: 70%;">
+                    <span class="user-name" th:text="${@userController.nameByEmail()}">Phan Van Hung</span>
+                    <span class="user-role" sec:authentication="principal.username"></span>
+                </div>
+            </div>
+            <div class="sidebar-menu">
+                <ul>
+                    <li class="">
+                        <a th:href="@{/user/profile}">
+                            <img src="https://modmixmap.travelerwp.com/wp-content/themes/traveler/v2/images/dashboard/ico_seting.svg"
+                                 alt="" class="st-icon-menu">
+                            <span>Hồ sơ</span>
+                        </a>
+                    </li>
+                    <li class="active">
+                        <a th:href="@{/user/history}">
+                            <img src="https://modmixmap.travelerwp.com/wp-content/themes/traveler/v2/images/dashboard/ico_booking_his.svg"
+                                 alt="" class="st-icon-menu">
+                            <span>Lịch sử đặt tour</span>
+                        </a>
+                    </li>
+                    <li class="">
+                        <a th:href="@{/user/wishlist}" style="    padding-right: 0px;">
+                            <img src="https://modmixmap.travelerwp.com/wp-content/themes/traveler/v2/images/dashboard/ico_wishlish.svg"
+                                 alt="" class="st-icon-menu">
+                            <span>Danh sách yêu thích</span>
+                        </a>
+                    </li>
+                    <li class="">
+                        <a th:href="@{/user/manager}" style="    padding-right: 0px;">
+                            <img src="https://modmixmap.travelerwp.com/wp-content/themes/traveler/v2/images/dashboard/ico_wishlish.svg"
+                                 alt="" class="st-icon-menu">
+                            <span>Quản lý khách hàng</span>
+                        </a>
+                    </li>
+
+                </ul>
+            </div>
+            <div class="sidebar-footer">
+                <ul>
+                    <li>
+                        <a th:href="@{/logout}">
+                            <img src="https://modmixmap.travelerwp.com/wp-content/themes/traveler/v2/images/dashboard/ico_seting.svg"
+                                 alt="" class="st-icon-menu">
+                            <span>Đăng xuất</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a th:href="@{/home}">
+                            <span class="st-green-homepage">Về trang chủ</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+
+    </nav>
+
+    <main class="page-content">
+        <div class="st_content">
+            <div class="st-create">
+                <h2>Hồ sơ</h2>
+                <a th:href="@{/user/manager}">Quản lý khách hàng</a>
+            </div>
+            <div class="infor-st-setting st-wishlist-wrap" style="background: antiquewhite">
+                <div class="st-loadding-wishlist">
+                    <div class="lds-dual-ring"></div>
+                </div>
+                <div class="tabbable">
+
+                    <div class="container " style="padding: 40px 70px;background: #e1f6ff; width: 100%;">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h4>Danh sách khách hàng</h4>
+                                <div class="table-reponsive">
+                                    <table class="table table-hover">
+                                        <thead>
+                                        <tr>
+                                            <th>STT</th>
+                                            <th>Họ và tên</th>
+                                            <th>Ngày sinh</th>
+                                            <th>Giới tính</th>
+                                            <th>SĐT</th>
+                                            <th>Email</th>
+                                            <th>Địa chỉ</th>
+                                            <th>Chức năng</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody id="load_data">
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+                        </div>
+
+                            </div>
+                        </div>
+                        <hr style="margin: 0 0 70px 0">
+                    </div>
+                </div>
+            </div>
+        <script type='text/javascript'
+                src='https://modmixmap.travelerwp.com/wp-content/themes/traveler/v2/js/partner.js'
+                id='st-partner-v2-js'></script>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+        <script>
+            $(document).ready(function (){
+                LoadData();
+            })
+            function LoadData(){
+                $.ajax({
+                    url:'',
+                    type:'GET',
+                    success:function (rs){
+                        console.log(rs);
+                        var str="";
+                        for(let i = 0; i < rs.length; i++){
+                            str += "<tr>";
+                            str += "<td>"+(i+1)+"/<td>";
+                            str += "<td>"++"/<td>";
+                            str += "<td>"++"/<td>";
+                            str += "</tr>";
+                        }
+                    }
+                })
+            }
+        </script>
+    </main>
+
+</body>
+</html>
+
+

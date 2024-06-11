@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="ISO-8859-1">
+    <title>Registration and Login App</title>
+
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+          crossorigin="anonymous">
+
+</head>
+<body>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <h1> User Login Page </h1>
+            <form th:action="@{/login}" method="post">
+
+                <!-- error message -->
+                <div th:if="${param.error}">
+                    <div class="alert alert-danger">Invalid username or
+                        password.
+                    </div>
+                </div>
+
+                <!-- logout message -->
+                <div th:if="${param.logout}">
+                    <div class="alert alert-info">You have been logged out.</div>
+                </div>
+
+                <div class="form-group">
+                    <label for="username"> Username </label> :
+                    <input type="text" class="form-control" id="username" name="username"
+                           placeholder="Enter Email ID" autofocus="autofocus">
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Password</label>: <input type="password"
+                                                                   id="password" name="password" class="form-control"
+                                                                   placeholder="Enter Password"/>
+                </div>
+                <div class="form-group">
+                    <span><a href="/" th:href="@{/forgotPasswordPage}">Quen mat khau? </a></span>
+                </div>
+
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-sm-6 col-sm-offset-3">
+                            <input type="submit" name="login-submit" id="login-submit"
+                                   class="form-control btn btn-primary" value="Log In"/>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <div class="form-group">
+						<span>New user? <a href="/" th:href="@{/registration}">Register
+								here</a></span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // L?y ph?n t? "div" và các ph?n t? "button"
+    const loginRequiredDiv = document.getElementById("login-required-message");
+    const loginButton = document.getElementById("login-button");
+    const cancelButton = document.getElementById("cancel-button");
+
+    // Ki?m tra xem ng??i dùng ?ã ??ng nh?p ch?a. cái này không liên quan ?âu
+    if (!userLoggedIn) {
+        // N?u ch?a ??ng nh?p, hi?n th? thông báo ??ng nh?p cùng v?i 2 nút "??ng nh?p" và "H?y"
+        loginRequiredDiv.style.display = "block";
+
+        // X? lý s? ki?n click nút "??ng nh?p"
+        loginButton.addEventListener("click", () => {
+            // Chuy?n h??ng ??n trang ??ng nh?p
+            window.location.href = "/login";
+        });
+
+        // X? lý s? ki?n click nút "H?y"
+        cancelButton.addEventListener("click", () => {
+            // ?n thông báo ??ng nh?p
+            loginRequiredDiv.style.display = "none";
+        });
+    }
+</script>
+</body>
+</html>

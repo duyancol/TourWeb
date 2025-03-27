@@ -45,7 +45,7 @@ public interface TourRepository extends JpaRepository<Tour,Long> {
     List<DepartureDates> getAllDateStartByIdTour(Long idTour);
 
 
-    @Query("SELECT DISTINCT  t.location FROM Tour t ORDER BY t.viewCount DESC ")
+    @Query("SELECT DISTINCT t.location, t.viewCount FROM Tour t ORDER BY t.viewCount DESC")
     List<String> getTopDestinations();
 
     @Query("SELECT DISTINCT  t.location FROM Tour t ORDER BY t.location ASC ")

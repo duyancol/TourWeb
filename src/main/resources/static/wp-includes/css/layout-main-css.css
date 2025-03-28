@@ -1958,5 +1958,34 @@
       right: 0;
     }
   }
+body.st-mod-style {
+  font-size: 16px;
+  line-height: 26px;
+  color: #0a58ca;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+@media (max-width: 1366px) {
+  .elementor-section.elementor-section-boxed > .elementor-container {
+    max-width: 1140px;
+  }
+}
+.elementor-section.elementor-section-boxed > .elementor-container {
+  max-width: 1320px;
+}
+.elementor-section.elementor-section-boxed>.elementor-container {
+  max-width: 1140px;
+}
+.elementor-section .elementor-container {
+  display: flex
+;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+}
+.elementor *, .elementor :after, .elementor :before {
+  box-sizing: border-box;
+}
   
   /*# sourceMappingURL=main.css.map */

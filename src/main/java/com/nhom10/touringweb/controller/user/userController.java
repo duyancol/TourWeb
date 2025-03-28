@@ -131,20 +131,26 @@ public class userController {
 
     @GetMapping("/user/img/avatar")
     public String getImgAvatar() {
-        int idUser = 0;
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        if (authentication != null && authentication.isAuthenticated()) {
-            String username = authentication.getName();
-            User user = userRepository.findByEmail(username);
-            idUser = user.getId();
+
+        if (authentication == null || !authentication.isAuthenticated()) {
+            return "default.jpg"; // Nếu chưa đăng nhập, trả về ảnh mặc định
         }
-        ImgAvatar imgAvatar = imgAvatarRepository.getImgAvatarByIdUser(idUser);
-        if (imgAvatar.getImg() ==null){
-            imgAvatar.setImg("default.jpg");
-            imgAvatarRepository.save(imgAvatar);
+
+        String username = authentication.getName();
+        User user = userRepository.findByEmail(username);
+
+        if (user == null) {
+            return "default.jpg"; // Nếu không tìm thấy user, trả về ảnh mặc định
         }
-        return imgAvatar.getImg();
+
+        // Lấy avatar từ database
+        ImgAvatar imgAvatar = imgAvatarRepository.getImgAvatarByIdUser(user.getId());
+
+        // Trả về ảnh hoặc ảnh mặc định nếu không có
+        return (imgAvatar != null && imgAvatar.getImg() != null) ? imgAvatar.getImg() : "default.jpg";
     }
+
 
 //    @PostMapping("/user/upload-avatar")
 //    public String uploadFile(@RequestParam("avatar") MultipartFile avatar) throws Exception {
@@ -165,15 +171,22 @@ public class userController {
 //        return "redirect:/user/profile";
 //    }
 
-    public User getUserById (int idUser) {
-        return userRepository.getUserById(idUser);
-    }
     public String getImgAvatar(int idUser) {
         ImgAvatar imgAvatar = imgAvatarRepository.getImgAvatarByIdUser(idUser);
-        if (imgAvatar.getImg() ==null){
+
+        if (imgAvatar == null) {
+            // Nếu không tìm thấy ảnh, tạo ảnh mặc định
+            imgAvatar = new ImgAvatar();
+            imgAvatar.setIdUser(idUser);
+            imgAvatar.setImg("default.jpg");
+            imgAvatarRepository.save(imgAvatar);
+        } else if (imgAvatar.getImg() == null) {
+            // Nếu ảnh tồn tại nhưng `img` rỗng, gán ảnh mặc định
             imgAvatar.setImg("default.jpg");
             imgAvatarRepository.save(imgAvatar);
         }
+
         return imgAvatar.getImg();
     }
+
 }
